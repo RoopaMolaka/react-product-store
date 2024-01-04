@@ -1,0 +1,21 @@
+.home-main-div{
+    background-image: linear-gradient(to right, rgb(92, 16, 232), rgb(148, 192, 236));
+}
+#home-head{
+    text-align: center;
+   padding-top: 100px;
+   text-shadow: 5px 5px 5px #33333333;
+background-image: linear-gradient(48deg,rgb(9, 10, 10) ,rgba(25, 3, 122, 0.918) );
+-webkit-background-clip: text;
+color: transparent;
+
+}
+.Link-style{
+    color: brown;
+    margin-left: 30px;
+    text-decoration: none;
+    font-size: 25px;
+}
+.Link-style :hover{
+    cursor: pointer;
+}

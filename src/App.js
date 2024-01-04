@@ -1,40 +1,30 @@
-import React from "react";
-import"./App.css"
- import { useState,useEffect } from "react";
- const App =()=>{
-    const [count,setCount]=useState(0)
-    const [state,setState]=useState(false)
-    var buttonElement= document.getElementById("btn")
-    
- useEffect(()=>{
-    let counter=""
-    if(state){
-        counter =setInterval(()=>{ 
-            setCount((prevCount)=>prevCount+1)},500)
-            
-    }
-     return()=>clearInterval(counter)
-  },[state])
-  
-  const startButton=()=>{
+import React,{useState} from 'react'
+import { BrowserRouter,Routes,Route,Navigate } from 'react-router-dom'
+import Home from "./Home"
+import Products from './Products'
+import Header from './Header'
+import ProductSpecification from './Products/productSpec'
+
+
+function App() {
+  const [isLoggedIn, setIsLoggedIn] = useState(false)
    
-   buttonElement.disabled=true
+  return (
+    <>
+    <BrowserRouter>
+    <Header loginStatus={isLoggedIn} setLoginStatus={setIsLoggedIn}/>
+    <Routes>
+        <Route path='/' element={<Home/>}></Route>
+        <Route path='/Products' element={isLoggedIn===true ?<Products />:<Navigate to="/"/>} ></Route>
+        <Route path='/Products/:productId' element={< ProductSpecification/>}></Route>
 
+        <Route path='*' element={<h1 style={{textAlign:"center",color:"grey",margin:"20px"}}>404 Not found!</h1>}></Route>
 
-    setState(true)
-  }
-  const stopButton=()=>{
-    buttonElement.disabled=false
-    setState(false)
-  }
+        
+    </Routes>
+    </BrowserRouter>
+    </>
+  )
+}
 
-    return(
-        <>
-        <p>Count:{count}</p>
-        <button id="btn"  onClick={()=>{startButton()}}>Start</button>
-        <button  onClick={()=>{stopButton()}}>Stop</button>
-        </>
-    )
-   
- } 
- export default App;
+export default App
